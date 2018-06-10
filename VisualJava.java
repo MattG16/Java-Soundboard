@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
 import java.awt.*;
+import java.awt.CardLayout;
+
 
 
 
@@ -17,17 +19,21 @@ public class VisualJava extends JFrame{
   JButton button3;
   JButton button4;
   JButton start;
+  JButton customize;
+  JFrame frame = new JFrame();
+  public JPanel panel2 = new JPanel();
   
   public static void main(String[] args) {
     
     new VisualJava();
-    
   
   }
   
   public VisualJava() {
     
   //  this.setSize(400, 400);
+  
+    JPanel panel = new JPanel();
     
     Toolkit tk = Toolkit.getDefaultToolkit();
     
@@ -36,15 +42,18 @@ public class VisualJava extends JFrame{
     int xPos = (dim.width / 2) - (this.getWidth() / 2);
     int yPos = (dim.height / 2) - (this.getHeight()/ 2);
     
-    this.setLocation(xPos, yPos);
+    frame.setLocation(xPos, yPos);
     
-    this.setResizable(false);
+    frame.setResizable(false);
     
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
-    this.setTitle("Soundboard");
+    frame.setTitle("Soundboard");
+
+    panel.setBackground(Color.GREEN);
+    panel2.setBackground(Color.BLUE);
     
-    JPanel panel = new JPanel();
+    customize = new JButton("Customize");
     
     start = new JButton("Start / Reset");
     
@@ -70,18 +79,20 @@ public class VisualJava extends JFrame{
     
     panel.add(button4);
     
-    this.add(panel);
+    panel.add(customize);
     
-    this.pack();
+    frame.setContentPane(panel);
     
-    this.setVisible(true);
+    frame.pack();
+    
+    frame.setVisible(true);
     
     start.addActionListener(lForButton);
     button1.addActionListener(lForButton);
     button2.addActionListener(lForButton);
     button3.addActionListener(lForButton);
     button4.addActionListener(lForButton);
-    
+    customize.addActionListener(lForButton);
 }
 
 
@@ -113,6 +124,12 @@ private class ListenForButton implements ActionListener {
       
      PlaySound(3);
       
+    }
+    else if (event.getSource() == customize) {
+      
+      frame.setContentPane(panel2);
+      frame.pack();
+
     }
     
   }
