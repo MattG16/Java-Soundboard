@@ -19,9 +19,14 @@ public class VisualJava extends JFrame{
   JButton button3;
   JButton button4;
   JButton start;
+  JButton reset;
   JButton customize;
+  JButton back;
+  JTextField textField1;
+  JButton change1;
   JFrame frame = new JFrame();
   public JPanel panel2 = new JPanel();
+  public JPanel panel = new JPanel();
   
   public static void main(String[] args) {
     
@@ -32,8 +37,6 @@ public class VisualJava extends JFrame{
   public VisualJava() {
     
   //  this.setSize(400, 400);
-  
-    JPanel panel = new JPanel();
     
     Toolkit tk = Toolkit.getDefaultToolkit();
     
@@ -55,7 +58,9 @@ public class VisualJava extends JFrame{
     
     customize = new JButton("Customize");
     
-    start = new JButton("Start / Reset");
+    start = new JButton("Start");
+    
+    reset = new JButton("Reset");
     
     button1 = new JButton("Button 1");
     
@@ -81,6 +86,22 @@ public class VisualJava extends JFrame{
     
     panel.add(customize);
     
+    panel.add(reset);
+    
+    back = new JButton("Back");
+    
+    textField1 = new JTextField(20);
+    
+    change1 = new JButton("Save");
+    
+    panel2.setLayout(new GridLayout(2, 2, 3, 3));
+    
+    panel2.add(textField1);
+    
+    panel2.add(change1);
+    
+    panel2.add(back);
+    
     frame.setContentPane(panel);
     
     frame.pack();
@@ -93,10 +114,13 @@ public class VisualJava extends JFrame{
     button3.addActionListener(lForButton);
     button4.addActionListener(lForButton);
     customize.addActionListener(lForButton);
+    back.addActionListener(lForButton);
+    change1.addActionListener(lForButton);
+    reset.addActionListener(lForButton);
 }
 
 
-private class ListenForButton implements ActionListener {
+public class ListenForButton implements ActionListener {
 
   public void actionPerformed(ActionEvent event) {
     
@@ -131,7 +155,24 @@ private class ListenForButton implements ActionListener {
       frame.pack();
 
     }
-    
+    else if (event.getSource() == back) {
+      
+      frame.setContentPane(panel);
+      frame.pack();
+
+    }
+    else if (event.getSource() == change1) {
+      
+       String sound1 = textField1.getText();
+       File newSound1 = new File(sound1);
+       sounds.remove(0);
+       sounds.add(0, newSound1);
+       
+
+    }
+    else if (event.getSource() == reset) {
+      reset();
+    }
   }
 
  ArrayList<File> sounds = new ArrayList<File>();
@@ -153,12 +194,12 @@ private class ListenForButton implements ActionListener {
     
   }
   
+  File begin = new File("begin.wav");
+  File coin = new File("coin.wav");
+  File gameover = new File("gameover.wav");
+  File win = new File("win.wav");
+  
   public void populate() {
-    
-    File begin = new File("begin.wav");
-    File coin = new File("coin.wav");
-    File gameover = new File("gameover.wav");
-    File win = new File("win.wav");
     
     sounds.add(begin);
     sounds.add(coin);
@@ -167,6 +208,14 @@ private class ListenForButton implements ActionListener {
 
   }
   
+  public void reset() {
+    
+    sounds.set(0, begin);
+    sounds.set(1, coin);
+    sounds.set(2, gameover);
+    sounds.set(3, win);
+    
+  }
   
   
 }
