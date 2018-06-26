@@ -9,9 +9,6 @@ import java.util.*;
 import java.awt.*;
 import java.awt.CardLayout;
 
-
-
-
 public class VisualJava extends JFrame{
   
   JButton button1;
@@ -24,6 +21,12 @@ public class VisualJava extends JFrame{
   JButton back;
   JTextField textField1;
   JButton change1;
+  JTextField textField2;
+  JButton change2;
+  JTextField textField3;
+  JButton change3;
+  JTextField textField4;
+  JButton change4;
   JFrame frame = new JFrame();
   public JPanel panel2 = new JPanel();
   public JPanel panel = new JPanel();
@@ -92,13 +95,37 @@ public class VisualJava extends JFrame{
     
     textField1 = new JTextField(20);
     
-    change1 = new JButton("Save");
+    change1 = new JButton("Save1");
     
-    panel2.setLayout(new GridLayout(2, 2, 3, 3));
+    textField2 = new JTextField(20);
+    
+    change2 = new JButton("Save2");
+    
+    textField3 = new JTextField(20);
+    
+    change3 = new JButton("Save3");
+    
+    textField4 = new JTextField(20);
+    
+    change4 = new JButton("Save4");
+    
+    panel2.setLayout(new GridLayout(5, 2));
     
     panel2.add(textField1);
     
     panel2.add(change1);
+    
+    panel2.add(textField2);
+    
+    panel2.add(change2);
+    
+    panel2.add(textField3);
+    
+    panel2.add(change3);
+    
+    panel2.add(textField4);
+    
+    panel2.add(change4);
     
     panel2.add(back);
     
@@ -116,6 +143,9 @@ public class VisualJava extends JFrame{
     customize.addActionListener(lForButton);
     back.addActionListener(lForButton);
     change1.addActionListener(lForButton);
+    change2.addActionListener(lForButton);
+    change3.addActionListener(lForButton);
+    change4.addActionListener(lForButton);
     reset.addActionListener(lForButton);
 }
 
@@ -167,6 +197,33 @@ public class ListenForButton implements ActionListener {
        File newSound1 = new File(sound1);
        sounds.remove(0);
        sounds.add(0, newSound1);
+       
+
+    }
+     else if (event.getSource() == change2) {
+      
+       String sound2 = textField2.getText();
+       File newSound2 = new File(sound2);
+       sounds.remove(1);
+       sounds.add(1, newSound2);
+       
+
+    }
+     else if (event.getSource() == change3) {
+      
+       String sound3 = textField3.getText();
+       File newSound3 = new File(sound3);
+       sounds.remove(2);
+       sounds.add(2, newSound3);
+       
+
+    }
+     else if (event.getSource() == change4) {
+      
+       String sound4 = textField4.getText();
+       File newSound4 = new File(sound4);
+       sounds.remove(3);
+       sounds.add(3, newSound4);
        
 
     }
